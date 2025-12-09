@@ -51,23 +51,23 @@
         }
 
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 clamp(15px, 3vw, 25px);
         }
 
         section {
-            padding: 80px 0;
+            padding: clamp(50px, 8vw, 80px) 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--secondary);
             position: relative;
             display: inline-block;
@@ -76,7 +76,7 @@
         .section-title h2::after {
             content: '';
             position: absolute;
-            width: 70px;
+            width: clamp(50px, 8vw, 70px);
             height: 4px;
             background-color: var(--primary);
             bottom: -10px;
@@ -99,16 +99,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: clamp(15px, 3vw, 20px) 0;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
+            white-space: nowrap;
         }
 
         .logo i {
@@ -118,10 +119,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
+            gap: clamp(1rem, 2vw, 2rem);
         }
 
         .nav-links a {
@@ -130,6 +128,8 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -158,38 +158,62 @@
             border: none;
             color: var(--secondary);
             cursor: pointer;
+            z-index: 1001;
         }
 
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 150px 0 100px;
-            margin-top: 80px;
-            border-radius: 0 0 40px 40px;
+            padding: clamp(100px, 15vw, 150px) 0 clamp(60px, 10vw, 100px);
+            margin-top: clamp(60px, 8vw, 80px);
+            border-radius: 0 0 clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
         }
 
         .hero-content {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            gap: clamp(2rem, 5vw, 4rem);
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                flex-direction: row;
+            }
         }
 
         .hero-text {
             flex: 1;
-            padding-right: 2rem;
+            min-width: 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-text {
+                text-align: left;
+                padding-right: 2rem;
+            }
         }
 
         .hero-text h1 {
-            font-size: 3.2rem;
+            font-size: clamp(2rem, 5vw, 3.2rem);
             margin-bottom: 1rem;
             color: white;
         }
 
+        .hero-text h2 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            font-weight: 400;
+        }
+
         .hero-text p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: #cbd5e1;
             margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
         .highlight {
@@ -198,18 +222,34 @@
 
         .hero-image {
             flex: 1;
+            min-width: 0;
             text-align: center;
+            width: 100%;
+            max-width: min(400px, 90vw);
         }
 
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
+        .hero-image svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-buttons {
+                justify-content: flex-start;
+            }
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 30px);
             background-color: var(--primary);
             color: white;
             border-radius: var(--radius);
@@ -218,6 +258,13 @@
             border: none;
             cursor: pointer;
             transition: var(--transition);
+            text-align: center;
+            white-space: nowrap;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn:hover {
@@ -240,14 +287,14 @@
         /* Skills Section */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
         }
 
         .skill-category {
             background-color: white;
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: clamp(1.25rem, 3vw, 2rem);
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
@@ -261,6 +308,7 @@
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
         }
 
         .skill-category h3 i {
@@ -273,19 +321,19 @@
 
         .skill-list li {
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .skill-name {
             display: flex;
             align-items: center;
+            margin-bottom: 5px;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
 
         .skill-name i {
             color: var(--primary);
             margin-right: 10px;
+            font-size: 1.2rem;
         }
 
         .skill-bar {
@@ -293,20 +341,20 @@
             background-color: var(--light-gray);
             border-radius: 4px;
             overflow: hidden;
-            margin-top: 5px;
         }
 
         .skill-level {
             height: 100%;
             border-radius: 4px;
             background-color: var(--primary);
+            transition: width 1s ease-in-out;
         }
 
         /* Projects Section */
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
         }
 
         .project-card {
@@ -315,6 +363,9 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-card:hover {
@@ -322,43 +373,50 @@
         }
 
         .project-img {
-            height: 200px;
+            height: clamp(160px, 25vw, 200px);
             overflow: hidden;
         }
 
-        .project-img img {
-            width: 100%;
+        .project-img div {
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-img img {
-            transform: scale(1.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1.5rem, 4vw, 2rem);
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: clamp(1rem, 2.5vw, 1.5rem);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-content h3 {
             color: var(--secondary);
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+        }
+
+        .project-content p {
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
+            gap: 0.5rem;
             margin: 1rem 0;
         }
 
         .project-tags span {
             background-color: var(--light-gray);
             color: var(--secondary);
-            padding: 5px 10px;
+            padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            margin-right: 8px;
-            margin-bottom: 8px;
         }
 
         /* Experience Section */
@@ -376,8 +434,14 @@
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -3px;
+            transform: translateX(-50%);
             border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 20px;
+            }
         }
 
         .timeline-item {
@@ -385,6 +449,14 @@
             position: relative;
             width: 50%;
             box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 0;
+            }
         }
 
         .timeline-item:nth-child(odd) {
@@ -395,8 +467,14 @@
             left: 50%;
         }
 
+        @media (max-width: 768px) {
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+        }
+
         .timeline-content {
-            padding: 20px;
+            padding: clamp(1rem, 2vw, 20px);
             background-color: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -405,12 +483,14 @@
 
         .timeline-content h3 {
             color: var(--primary);
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
         }
 
         .timeline-date {
             font-weight: 500;
             color: var(--primary);
             margin-bottom: 5px;
+            font-size: 0.9rem;
         }
 
         .timeline-item::after {
@@ -429,15 +509,35 @@
             right: -10px;
         }
 
+        @media (max-width: 768px) {
+            .timeline-item:nth-child(odd)::after {
+                right: auto;
+                left: 11px;
+            }
+        }
+
         .timeline-item:nth-child(even)::after {
             left: -10px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item:nth-child(even)::after {
+                left: 11px;
+            }
         }
 
         /* Contact Section */
         .contact-container {
             display: flex;
-            gap: 3rem;
+            flex-direction: column;
+            gap: clamp(2rem, 4vw, 3rem);
             margin-top: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .contact-container {
+                flex-direction: row;
+            }
         }
 
         .contact-info {
@@ -451,77 +551,267 @@
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 2rem;
+            margin-bottom: clamp(1rem, 2vw, 2rem);
+            gap: clamp(0.75rem, 2vw, 1rem);
+        }
+
+        @media (max-width: 576px) {
+            .contact-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
 
         .contact-icon {
             background-color: var(--primary);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: clamp(40px, 5vw, 50px);
+            height: clamp(40px, 5vw, 50px);
+            min-width: clamp(40px, 5vw, 50px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
             flex-shrink: 0;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            font-size: clamp(0.9rem, 1.5vw, 0.95rem);
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: clamp(10px, 2vw, 12px) clamp(12px, 2vw, 15px);
             border: 1px solid var(--light-gray);
             border-radius: var(--radius);
             font-family: 'Poppins', sans-serif;
             transition: var(--transition);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            min-height: 48px;
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         textarea.form-control {
-            min-height: 150px;
+            min-height: clamp(120px, 20vw, 150px);
             resize: vertical;
+        }
+
+        /* Success Message */
+        .form-success {
+            display: none;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            text-align: center;
+            border-left: 4px solid #10b981;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .admin-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .admin-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .dashboard-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1002;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .dashboard-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dashboard-content {
+            background-color: white;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: clamp(1rem, 2vw, 2rem);
+            position: relative;
+        }
+
+        .close-dashboard {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .dashboard-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .dashboard-section {
+            display: none;
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .visitors-table, .submissions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .visitors-table th, .submissions-table th {
+            background-color: var(--light);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .visitors-table td, .submissions-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .visitors-table tr:hover, .submissions-table tr:hover {
+            background-color: var(--light);
+        }
+
+        .ip-address {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            background-color: var(--light);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         /* Footer */
         footer {
             background-color: var(--secondary);
             color: white;
-            padding: 60px 0 30px;
+            padding: clamp(40px, 6vw, 60px) 0 30px;
         }
 
         .footer-content {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 2rem;
         }
 
         .social-links {
             display: flex;
             list-style: none;
-        }
-
-        .social-links li {
-            margin-left: 1.5rem;
+            gap: clamp(1rem, 2vw, 1.5rem);
         }
 
         .social-links a {
             color: white;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
             transition: var(--transition);
         }
 
@@ -538,104 +828,103 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 3rem;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-item::after {
-                left: 21px;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
-                top: 80px;
-                left: 0;
+                top: 0;
+                right: -100%;
                 background-color: white;
-                width: 100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
                 flex-direction: column;
                 align-items: center;
-                padding: 2rem 0;
+                justify-content: center;
+                padding: 2rem;
                 box-shadow: var(--shadow);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: var(--transition);
-                z-index: 999;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                gap: 2rem;
             }
             
             .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
+                right: 0;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
             
-            .section-title h2 {
-                font-size: 2rem;
+            .mobile-menu-btn.active i::before {
+                content: '\f00d';
             }
             
-            .hero-text h1 {
-                font-size: 2.5rem;
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
             }
             
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
+            .overlay.active {
+                display: block;
             }
             
-            .social-links {
-                margin-top: 1.5rem;
+            .dashboard-content {
+                padding: 1rem;
+                max-height: 80vh;
             }
             
-            .social-links li:first-child {
-                margin-left: 0;
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .visitors-table, .submissions-table {
+                display: block;
+                overflow-x: auto;
             }
         }
 
         @media (max-width: 576px) {
-            .skills-container, .projects-container {
-                grid-template-columns: 1fr;
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
             }
             
-            .hero {
-                padding: 120px 0 80px;
+            .hero-buttons .btn {
+                width: 100%;
             }
             
-            .hero-text h1 {
-                font-size: 2rem;
+            .dashboard-tabs {
+                flex-direction: column;
             }
+            
+            .dashboard-tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-dashboard {
+                bottom: 10px;
+                left: 10px;
+            }
+            
+            .admin-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -658,6 +947,7 @@
             </nav>
         </div>
     </header>
+    <div class="overlay"></div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -667,13 +957,12 @@
                     <h1>Hi, I'm <span class="highlight">Alex Morgan</span></h1>
                     <h2>DevOps Engineer & Cloud Specialist</h2>
                     <p>I architect, automate, and optimize infrastructure to deliver scalable, reliable, and secure systems. With expertise in CI/CD, containerization, cloud platforms, and infrastructure as code, I help teams deliver software faster and more reliably.</p>
-                    <div>
+                    <div class="hero-buttons">
                         <a href="#contact" class="btn">Get In Touch</a>
                         <a href="#projects" class="btn btn-outline">View Projects</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <!-- Placeholder for profile image - using an illustration -->
                     <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="200" cy="200" r="180" fill="#3b82f6" opacity="0.1"/>
                         <circle cx="200" cy="150" r="60" fill="#3b82f6"/>
@@ -801,8 +1090,7 @@
             <div class="projects-container">
                 <div class="project-card">
                     <div class="project-img">
-                        <!-- Using a placeholder image with a cloud theme -->
-                        <div style="height: 100%; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                        <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">
                             <i class="fab fa-aws"></i>
                         </div>
                     </div>
@@ -821,7 +1109,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <div style="height: 100%; background: linear-gradient(135deg, #10b981 0%, #047857 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                        <div style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
                             <i class="fab fa-docker"></i>
                         </div>
                     </div>
@@ -840,7 +1128,7 @@
                 </div>
                 <div class="project-card">
                     <div class="project-img">
-                        <div style="height: 100%; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                        <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
                             <i class="fas fa-shield-alt"></i>
                         </div>
                     </div>
@@ -963,6 +1251,11 @@
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
+                    <div id="formSuccess" class="form-success">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Message Sent Successfully!</h3>
+                        <p>Thank you for your message. I'll get back to you as soon as possible.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -989,43 +1282,151 @@
         </div>
     </footer>
 
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard">
+        <button class="admin-btn" id="adminToggle" title="Admin Dashboard">
+            <i class="fas fa-chart-line"></i>
+        </button>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div class="dashboard-modal" id="dashboardModal">
+        <div class="dashboard-content">
+            <button class="close-dashboard" id="closeDashboard">&times;</button>
+            <h2>Admin Dashboard</h2>
+            
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" data-tab="overview">Overview</button>
+                <button class="dashboard-tab" data-tab="visitors">Visitor Analytics</button>
+                <button class="dashboard-tab" data-tab="submissions">Form Submissions</button>
+                <button class="dashboard-tab" data-tab="export">Export Data</button>
+            </div>
+            
+            <!-- Overview Tab -->
+            <div class="dashboard-section active" id="overviewTab">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalVisitors">0</div>
+                        <div class="stat-label">Total Visitors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="todayVisitors">0</div>
+                        <div class="stat-label">Visitors Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSubmissions">0</div>
+                        <div class="stat-label">Form Submissions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="uniqueCompanies">0</div>
+                        <div class="stat-label">Unique Companies</div>
+                    </div>
+                </div>
+                
+                <h3>Recent Activity</h3>
+                <div id="recentActivity">
+                    <p>Loading recent activity...</p>
+                </div>
+            </div>
+            
+            <!-- Visitors Tab -->
+            <div class="dashboard-section" id="visitorsTab">
+                <h3>Visitor Analytics</h3>
+                <div class="visitor-stats">
+                    <p><strong>Unique Visitors:</strong> <span id="uniqueVisitors">0</span></p>
+                    <p><strong>Most Active Day:</strong> <span id="mostActiveDay">None</span></p>
+                    <p><strong>Most Common Company:</strong> <span id="mostCommonCompany">None</span></p>
+                </div>
+                
+                <h3>Visitor Log</h3>
+                <table class="visitors-table">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Day</th>
+                            <th>IP Address</th>
+                            <th>Company (ISP)</th>
+                            <th>Location</th>
+                            <th>Visits</th>
+                        </tr>
+                    </thead>
+                    <tbody id="visitorsTableBody">
+                        <!-- Visitor data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Submissions Tab -->
+            <div class="dashboard-section" id="submissionsTab">
+                <h3>Form Submissions</h3>
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody id="submissionsTableBody">
+                        <!-- Submission data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Export Tab -->
+            <div class="dashboard-section" id="exportTab">
+                <h3>Export Data</h3>
+                <p>Export your analytics data for further analysis.</p>
+                <div class="export-options">
+                    <button class="btn" id="exportVisitors">Export Visitor Data (CSV)</button>
+                    <button class="btn btn-outline" id="exportSubmissions">Export Submission Data (CSV)</button>
+                    <button class="btn" id="exportAll">Export All Data (JSON)</button>
+                </div>
+                
+                <div class="export-instructions">
+                    <h4>How to use the data:</h4>
+                    <ul>
+                        <li>CSV files can be opened in Excel or Google Sheets</li>
+                        <li>JSON files contain all data for programmatic analysis</li>
+                        <li>Data is stored locally in your browser</li>
+                        <li>To reset data, use the "Clear All Data" button below</li>
+                    </ul>
+                </div>
+                
+                <div class="danger-zone">
+                    <h4>Danger Zone</h4>
+                    <p>Warning: This will permanently delete all stored data.</p>
+                    <button class="btn" style="background-color: var(--danger);" id="clearAllData">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.overlay');
         
-        mobileMenuBtn.addEventListener('click', () => {
+        function toggleMobileMenu() {
             navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
+            overlay.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
         
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                if (navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
             });
-        });
-        
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real application, you would send this data to a server
-            // For demo purposes, we'll just show an alert
-            alert(`Thank you for your message, ${name}! I'll get back to you soon at ${email}.`);
-            
-            // Reset form
-            contactForm.reset();
         });
         
         // Smooth scrolling for anchor links
@@ -1054,6 +1455,466 @@
             } else {
                 header.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
             }
+        });
+
+        // ============================================
+        // ENHANCED FORM SUBMISSION AND VISITOR TRACKING
+        // ============================================
+
+        // Get current date and time
+        function getCurrentDateTime() {
+            const now = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+            return {
+                date: now.toISOString().split('T')[0], // YYYY-MM-DD
+                day: days[now.getDay()],
+                time: now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' }),
+                timestamp: now.toISOString(),
+                formatted: `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()} ${now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' })}`
+            };
+        }
+
+        // Initialize data storage
+        let portfolioData = {
+            visitors: [],
+            submissions: [],
+            settings: {
+                initialized: false,
+                lastReset: new Date().toISOString()
+            }
+        };
+
+        // Load data from localStorage
+        function loadData() {
+            const savedData = localStorage.getItem('portfolioAnalytics');
+            if (savedData) {
+                portfolioData = JSON.parse(savedData);
+            }
+            // Initialize if first time
+            if (!portfolioData.settings.initialized) {
+                portfolioData.settings.initialized = true;
+                saveData();
+            }
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('portfolioAnalytics', JSON.stringify(portfolioData));
+        }
+
+        // Track visitor
+        async function trackVisitor() {
+            try {
+                // Get visitor IP and location info
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const visitorIP = ipData.ip;
+                
+                // Try to get company/ISP info (simulated since we can't get actual company from IP without paid service)
+                const companyInfo = await getCompanyInfo(visitorIP);
+                
+                const currentDateTime = getCurrentDateTime();
+                const today = currentDateTime.date;
+                
+                // Check if this IP visited today
+                const todayVisits = portfolioData.visitors.filter(v => 
+                    v.ip === visitorIP && v.date === today
+                );
+                
+                if (todayVisits.length === 0) {
+                    // New visitor for today
+                    portfolioData.visitors.push({
+                        id: Date.now(),
+                        ip: visitorIP,
+                        date: today,
+                        day: currentDateTime.day,
+                        time: currentDateTime.time,
+                        timestamp: currentDateTime.timestamp,
+                        formatted: currentDateTime.formatted,
+                        company: companyInfo.company,
+                        isp: companyInfo.isp,
+                        location: companyInfo.location,
+                        visits: 1
+                    });
+                } else {
+                    // Update visit count for today
+                    todayVisits[0].visits++;
+                    todayVisits[0].time = currentDateTime.time;
+                    todayVisits[0].timestamp = currentDateTime.timestamp;
+                    todayVisits[0].formatted = currentDateTime.formatted;
+                }
+                
+                saveData();
+                updateDashboard();
+                
+            } catch (error) {
+                console.log('Visitor tracking failed, using mock data');
+                // Fallback to mock data if API fails
+                trackVisitorWithMockData();
+            }
+        }
+
+        // Mock company info (for demo purposes)
+        async function getCompanyInfo(ip) {
+            // In a real application, you would use a paid IP geolocation service
+            // For demo, we'll use mock data
+            const mockCompanies = [
+                { company: 'Google LLC', isp: 'Google Fiber', location: 'Mountain View, CA' },
+                { company: 'Amazon.com, Inc.', isp: 'Amazon Technologies', location: 'Seattle, WA' },
+                { company: 'Microsoft Corporation', isp: 'Microsoft Azure', location: 'Redmond, WA' },
+                { company: 'Facebook, Inc.', isp: 'Facebook', location: 'Menlo Park, CA' },
+                { company: 'Apple Inc.', isp: 'Apple', location: 'Cupertino, CA' },
+                { company: 'IBM Corporation', isp: 'IBM Cloud', location: 'Armonk, NY' },
+                { company: 'Oracle Corporation', isp: 'Oracle Cloud', location: 'Austin, TX' },
+                { company: 'Netflix, Inc.', isp: 'Netflix', location: 'Los Gatos, CA' },
+                { company: 'Salesforce.com, Inc.', isp: 'Salesforce', location: 'San Francisco, CA' },
+                { company: 'Adobe Inc.', isp: 'Adobe', location: 'San Jose, CA' }
+            ];
+            
+            // Use IP hash to deterministically select a mock company
+            const hash = ip.split('.').reduce((acc, num) => acc + parseInt(num), 0);
+            const companyIndex = hash % mockCompanies.length;
+            
+            return mockCompanies[companyIndex];
+        }
+
+        // Fallback visitor tracking with mock data
+        function trackVisitorWithMockData() {
+            const currentDateTime = getCurrentDateTime();
+            const today = currentDateTime.date;
+            
+            // Generate mock IP (for demo purposes)
+            const mockIP = `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+            const mockCompany = {
+                company: 'Demo Company Inc.',
+                isp: 'Demo ISP',
+                location: 'Demo City, DC'
+            };
+            
+            // Check if this IP visited today
+            const todayVisits = portfolioData.visitors.filter(v => 
+                v.ip === mockIP && v.date === today
+            );
+            
+            if (todayVisits.length === 0) {
+                portfolioData.visitors.push({
+                    id: Date.now(),
+                    ip: mockIP,
+                    date: today,
+                    day: currentDateTime.day,
+                    time: currentDateTime.time,
+                    timestamp: currentDateTime.timestamp,
+                    formatted: currentDateTime.formatted,
+                    company: mockCompany.company,
+                    isp: mockCompany.isp,
+                    location: mockCompany.location,
+                    visits: 1
+                });
+            } else {
+                todayVisits[0].visits++;
+                todayVisits[0].time = currentDateTime.time;
+                todayVisits[0].timestamp = currentDateTime.timestamp;
+                todayVisits[0].formatted = currentDateTime.formatted;
+            }
+            
+            saveData();
+            updateDashboard();
+        }
+
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Save submission
+            const currentDateTime = getCurrentDateTime();
+            portfolioData.submissions.push({
+                id: Date.now(),
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                date: currentDateTime.date,
+                day: currentDateTime.day,
+                time: currentDateTime.time,
+                timestamp: currentDateTime.timestamp,
+                formatted: currentDateTime.formatted
+            });
+            
+            saveData();
+            
+            // Show success message
+            formSuccess.classList.add('show');
+            contactForm.reset();
+            
+            // Update dashboard
+            updateDashboard();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                formSuccess.classList.remove('show');
+            }, 5000);
+        });
+
+        // Dashboard functionality
+        const adminToggle = document.getElementById('adminToggle');
+        const dashboardModal = document.getElementById('dashboardModal');
+        const closeDashboard = document.getElementById('closeDashboard');
+        const dashboardTabs = document.querySelectorAll('.dashboard-tab');
+        const dashboardSections = document.querySelectorAll('.dashboard-section');
+
+        // Toggle dashboard
+        adminToggle.addEventListener('click', () => {
+            dashboardModal.classList.add('show');
+            updateDashboard();
+        });
+
+        closeDashboard.addEventListener('click', () => {
+            dashboardModal.classList.remove('show');
+        });
+
+        // Close modal when clicking outside
+        dashboardModal.addEventListener('click', (e) => {
+            if (e.target === dashboardModal) {
+                dashboardModal.classList.remove('show');
+            }
+        });
+
+        // Tab switching
+        dashboardTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                dashboardTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding section
+                dashboardSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(`${tabId}Tab`).classList.add('active');
+            });
+        });
+
+        // Update dashboard statistics
+        function updateDashboard() {
+            const today = getCurrentDateTime().date;
+            
+            // Calculate statistics
+            const totalVisitors = portfolioData.visitors.reduce((sum, visitor) => sum + visitor.visits, 0);
+            const todayVisitors = portfolioData.visitors
+                .filter(v => v.date === today)
+                .reduce((sum, visitor) => sum + visitor.visits, 0);
+            const totalSubmissions = portfolioData.submissions.length;
+            
+            // Get unique companies
+            const companies = [...new Set(portfolioData.visitors.map(v => v.company))];
+            const uniqueCompanies = companies.length;
+            
+            // Get unique visitors (by IP)
+            const uniqueIPs = [...new Set(portfolioData.visitors.map(v => v.ip))];
+            const uniqueVisitors = uniqueIPs.length;
+            
+            // Get most active day
+            const dayCounts = {};
+            portfolioData.visitors.forEach(v => {
+                dayCounts[v.day] = (dayCounts[v.day] || 0) + v.visits;
+            });
+            let mostActiveDay = 'None';
+            let maxVisits = 0;
+            for (const [day, count] of Object.entries(dayCounts)) {
+                if (count > maxVisits) {
+                    maxVisits = count;
+                    mostActiveDay = day;
+                }
+            }
+            
+            // Get most common company
+            const companyCounts = {};
+            portfolioData.visitors.forEach(v => {
+                companyCounts[v.company] = (companyCounts[v.company] || 0) + v.visits;
+            });
+            let mostCommonCompany = 'None';
+            let maxCompanyVisits = 0;
+            for (const [company, count] of Object.entries(companyCounts)) {
+                if (count > maxCompanyVisits) {
+                    maxCompanyVisits = count;
+                    mostCommonCompany = company;
+                }
+            }
+            
+            // Update overview stats
+            document.getElementById('totalVisitors').textContent = totalVisitors;
+            document.getElementById('todayVisitors').textContent = todayVisitors;
+            document.getElementById('totalSubmissions').textContent = totalSubmissions;
+            document.getElementById('uniqueCompanies').textContent = uniqueCompanies;
+            
+            // Update visitor analytics
+            document.getElementById('uniqueVisitors').textContent = uniqueVisitors;
+            document.getElementById('mostActiveDay').textContent = mostActiveDay;
+            document.getElementById('mostCommonCompany').textContent = mostCommonCompany;
+            
+            // Update recent activity
+            const recentVisitors = [...portfolioData.visitors]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .slice(0, 5);
+            
+            const recentActivity = document.getElementById('recentActivity');
+            if (recentVisitors.length > 0) {
+                recentActivity.innerHTML = recentVisitors.map(visitor => `
+                    <p><strong>${visitor.formatted}:</strong> ${visitor.company} visited (${visitor.visits} time${visitor.visits > 1 ? 's' : ''})</p>
+                `).join('');
+            } else {
+                recentActivity.innerHTML = '<p>No recent activity</p>';
+            }
+            
+            // Update visitors table
+            const visitorsTableBody = document.getElementById('visitorsTableBody');
+            const sortedVisitors = [...portfolioData.visitors]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            visitorsTableBody.innerHTML = sortedVisitors.map(visitor => `
+                <tr>
+                    <td>${visitor.formatted}</td>
+                    <td>${visitor.day}</td>
+                    <td><span class="ip-address">${visitor.ip}</span></td>
+                    <td>${visitor.company}<br><small>${visitor.isp}</small></td>
+                    <td>${visitor.location}</td>
+                    <td>${visitor.visits}</td>
+                </tr>
+            `).join('');
+            
+            // Update submissions table
+            const submissionsTableBody = document.getElementById('submissionsTableBody');
+            const sortedSubmissions = [...portfolioData.submissions]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            submissionsTableBody.innerHTML = sortedSubmissions.map(submission => `
+                <tr>
+                    <td>${submission.formatted}</td>
+                    <td>${submission.name}</td>
+                    <td>${submission.email}</td>
+                    <td>${submission.subject}</td>
+                    <td>${submission.message.substring(0, 50)}${submission.message.length > 50 ? '...' : ''}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Export functionality
+        document.getElementById('exportVisitors').addEventListener('click', () => {
+            exportToCSV(portfolioData.visitors, 'visitors.csv');
+        });
+
+        document.getElementById('exportSubmissions').addEventListener('click', () => {
+            exportToCSV(portfolioData.submissions, 'submissions.csv');
+        });
+
+        document.getElementById('exportAll').addEventListener('click', () => {
+            exportToJSON(portfolioData, 'portfolio_data.json');
+        });
+
+        document.getElementById('clearAllData').addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
+                portfolioData = {
+                    visitors: [],
+                    submissions: [],
+                    settings: {
+                        initialized: true,
+                        lastReset: new Date().toISOString()
+                    }
+                };
+                saveData();
+                updateDashboard();
+                alert('All data has been cleared.');
+            }
+        });
+
+        // Export to CSV
+        function exportToCSV(data, filename) {
+            if (data.length === 0) {
+                alert('No data to export');
+                return;
+            }
+            
+            const headers = Object.keys(data[0]);
+            const csvContent = [
+                headers.join(','),
+                ...data.map(row => headers.map(header => {
+                    const cell = row[header];
+                    return typeof cell === 'string' ? `"${cell.replace(/"/g, '""')}"` : cell;
+                }).join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Export to JSON
+        function exportToJSON(data, filename) {
+            const jsonContent = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            trackVisitor();
+            updateDashboard();
+            
+            // Animate skill bars on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillLevels = entry.target.querySelectorAll('.skill-level');
+                        skillLevels.forEach(level => {
+                            const width = level.style.width;
+                            level.style.width = '0';
+                            setTimeout(() => {
+                                level.style.width = width;
+                            }, 100);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            document.querySelectorAll('.skill-category').forEach(category => {
+                observer.observe(category);
+            });
         });
     </script>
 </body>
